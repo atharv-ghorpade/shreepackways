@@ -24,7 +24,7 @@
     <header class="site-header">
         <div class="container nav-wrapper">
             <div class="logo"><img src="assets/img/logo1.webp" alt="Shree Packways Logo"></div>
-            <nav class="main-nav">
+            <nav class="main-nav" id="mainNav">
                 <a href="index.html">Home</a>
                 <a href="index.html#services">Services</a>
                 <a href="index.html#why">Networks</a>
@@ -32,8 +32,14 @@
                 <a href="index.html#contact">Contact Us</a>
             </nav>
             <a href="index.html#quote" class="btn btn-small btn-outline">Get Quote</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
     <section class="page-hero">
         <div class="container">
@@ -146,5 +152,6 @@
             <p>Copyright © 2022 Shree Packways Cargo Movers Pvt. Ltd. All Rights Reserved</p>
         </div>
     </footer>
+    <script src="assets/js/mobile-menu.js"></script>
 </body>
 </html>
