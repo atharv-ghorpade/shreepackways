@@ -318,7 +318,7 @@ img {
     top: 38px;
     left: 0;
     right: 0;
-    z-index: 50;
+    z-index: 100;
     box-shadow: 0 1px 0 rgba(10,26,47,0.05), 0 4px 20px rgba(10,26,47,0.04);
     border-bottom: 1px solid rgba(221,227,232,0.8);
 }
@@ -496,7 +496,7 @@ img {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 51;
+    z-index: 99;
 }
 
 .info-bar-wrapper {
@@ -1080,10 +1080,11 @@ img {
     width: 28px;
     height: 20px;
     cursor: pointer;
-    z-index: 100;
+    z-index: 200;
     background: none;
     border: none;
     padding: 0;
+    position: relative;
 }
 
 .mobile-menu-toggle span {
@@ -1116,7 +1117,7 @@ img {
     right: 0;
     bottom: 0;
     background: rgba(10, 26, 47, 0.95);
-    z-index: 99;
+    z-index: 98;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -1141,6 +1142,7 @@ img {
     /* Mobile Menu Toggle */
     .mobile-menu-toggle {
         display: flex;
+        z-index: 200;
     }
     
     .mobile-nav-overlay {
@@ -1164,7 +1166,7 @@ img {
         justify-content: flex-start;
         padding: 100px 30px 40px;
         gap: 0;
-        z-index: 100;
+        z-index: 150;
         box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         transition: right 0.3s ease;
     }
@@ -1188,9 +1190,15 @@ img {
         display: none;
     }
     
+    /* Header z-index adjustment */
+    .site-header {
+        z-index: 100;
+    }
+    
     /* Top Info Bar */
     .top-info-bar {
         padding: 8px 0;
+        z-index: 49;
     }
     
     .info-bar-wrapper {
