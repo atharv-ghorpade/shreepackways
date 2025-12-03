@@ -334,6 +334,12 @@
     margin-bottom: 16px;
 }
 
+.testimonial-header h2 .highlight-blue {
+    background: var(--royal-blue);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+}
+
 .testimonial-underline {
     width: 60px;
     height: 3px;
@@ -1842,11 +1848,8 @@
 }
 
 .section-subtitle .highlight {
-    background: var(--royal-blue);
-    padding: 4px 12px;
-    border-radius: var(--radius-sm);
-    color: var(--white);
-    font-weight: var(--fw-medium);
+    color: var(--muted-grey);
+    font-weight: inherit;
 }
 
 .text-center {
@@ -2572,6 +2575,19 @@
     
     .inquiry-info-panel {
         padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .inquiry-info-panel .info-panel-content {
+        align-items: center;
+    }
+    
+    .inquiry-info-panel .contact-details {
+        align-items: center;
+    }
+    
+    .inquiry-info-panel .contact-item {
+        justify-content: center;
     }
     
     .inquiry-form-panel {
@@ -2580,6 +2596,11 @@
     
     .inquiry-info-panel h2 {
         font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    .inquiry-info-panel p {
+        text-align: center;
     }
     
     .inquiry-form-panel h3 {

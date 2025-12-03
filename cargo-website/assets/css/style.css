@@ -615,11 +615,8 @@ img {
 }
 
 .section-subtitle .highlight {
-    background: var(--royal-blue);
-    padding: 4px 12px;
-    border-radius: var(--radius-sm);
-    color: var(--white);
-    font-weight: var(--fw-medium);
+    color: var(--muted-grey);
+    font-weight: inherit;
 }
 
 .services-wrapper {
@@ -1477,18 +1474,19 @@ img {
     }
     
     .form-btn {
-        padding: 16px 24px;
-        font-size: 16px;
+        padding: 12px 20px;
+        font-size: 15px;
         font-weight: 600;
     }
     
     .btn {
-        padding: 14px 24px;
-        font-size: 15px;
+        padding: 10px 18px;
+        font-size: 14px;
     }
     
     .btn-small {
-        padding: 10px 20px;
+        padding: 8px 16px;
+        font-size: 13px;
     }
 
     /* Section spacing */
