@@ -1352,6 +1352,19 @@ img {
         padding: 30px 20px;
     }
     
+    /* Form Styles for Tablet/Mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .quote-form input,
+    .quote-form textarea {
+        font-size: 16px;
+        padding: 14px 16px;
+        margin-bottom: 14px;
+    }
+    
     /* Footer */
     .footer-locations {
         grid-template-columns: 1fr 1fr;
@@ -1437,20 +1450,45 @@ img {
         font-size: 20px;
     }
     
-    /* Form Elements */
+    /* Form Elements - Mobile Optimized */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .quote-form input,
+    .quote-form textarea {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .quote-form textarea {
+        min-height: 100px;
+    }
+    
     .form-group input,
     .form-group select,
     .form-group textarea {
-        padding: 12px 14px;
-        font-size: 15px;
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+    }
+    
+    .form-btn {
+        padding: 16px 24px;
+        font-size: 16px;
+        font-weight: 600;
     }
     
     .btn {
-        padding: 12px 24px;
+        padding: 14px 24px;
+        font-size: 15px;
     }
     
     .btn-small {
-        padding: 8px 18px;
+        padding: 10px 20px;
     }
 
     /* Section spacing */

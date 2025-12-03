@@ -1723,6 +1723,23 @@
         grid-template-columns: 1fr;
     }
     
+    /* Form inputs - Mobile Optimized */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .contact-form {
+        padding: 25px 20px;
+    }
+    
     .stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 30px;
@@ -2517,9 +2534,48 @@
     }
 }
 
+@media (max-width: 768px) {
+    .inquiry-info-panel {
+        padding: 35px 25px;
+    }
+    
+    .inquiry-form-panel {
+        padding: 35px 25px;
+    }
+    
+    .inquiry-form-enhanced input,
+    .inquiry-form-enhanced textarea {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .btn-submit-enhanced {
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .contact-icon {
+        margin: 0 auto;
+    }
+}
+
 @media (max-width: 576px) {
     .inquiry-form-enhanced .form-row-2col {
         grid-template-columns: 1fr;
+    }
+    
+    .inquiry-info-panel {
+        padding: 30px 20px;
+    }
+    
+    .inquiry-form-panel {
+        padding: 30px 20px;
     }
     
     .inquiry-info-panel h2 {
@@ -2532,5 +2588,31 @@
     
     .contact-details {
         gap: 20px;
+    }
+    
+    .inquiry-form-enhanced input,
+    .inquiry-form-enhanced textarea {
+        padding: 14px 14px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    
+    .inquiry-form-enhanced textarea {
+        min-height: 120px;
+    }
+    
+    .btn-submit-enhanced {
+        padding: 16px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    
+    .inquiry-form-enhanced label {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+    
+    .inquiry-form-enhanced .form-group {
+        margin-bottom: 16px;
     }
 }
