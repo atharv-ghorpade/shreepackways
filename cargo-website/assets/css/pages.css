@@ -291,18 +291,13 @@
 /* ================= ABOUT PAGE - TESTIMONIALS ================= */
 .about-testimonial-section {
     position: relative;
-    background: url('../img/testimonial-bg.jpg') center center/cover no-repeat;
+    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--ocean-blue) 100%);
     padding: 80px 0;
     overflow: hidden;
 }
 
 .testimonial-bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    display: none;
 }
 
 .about-testimonial-section .container {
@@ -332,12 +327,6 @@
     font-weight: 700;
     color: var(--white);
     margin-bottom: 16px;
-}
-
-.testimonial-header h2 .highlight-blue {
-    background: var(--royal-blue);
-    padding: 4px 12px;
-    border-radius: var(--radius-sm);
 }
 
 .testimonial-underline {
