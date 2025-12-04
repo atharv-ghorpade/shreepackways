@@ -95,6 +95,203 @@
     --shadow-card-hover: 0 12px 40px rgba(10,26,47,0.12), 0 4px 12px rgba(10,26,47,0.08);
 }
 
+/* ============= DECORATIVE BACKGROUND STICKERS ============= */
+
+/* Base decoration container */
+.section-decorations {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Circle decorations */
+.decor-circle {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.decor-circle-blue {
+    background: radial-gradient(circle, rgba(0, 119, 200, 0.08) 0%, transparent 70%);
+}
+
+.decor-circle-cyan {
+    background: radial-gradient(circle, rgba(77, 199, 227, 0.1) 0%, transparent 70%);
+}
+
+.decor-circle-teal {
+    background: radial-gradient(circle, rgba(0, 155, 124, 0.08) 0%, transparent 70%);
+}
+
+.decor-circle-navy {
+    background: radial-gradient(circle, rgba(0, 91, 153, 0.06) 0%, transparent 70%);
+}
+
+/* Ring decorations */
+.decor-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+    z-index: 0;
+}
+
+.decor-ring-blue {
+    border-color: rgba(0, 119, 200, 0.08);
+}
+
+.decor-ring-cyan {
+    border-color: rgba(77, 199, 227, 0.12);
+}
+
+.decor-ring-grey {
+    border-color: rgba(221, 227, 232, 0.5);
+}
+
+/* Dotted pattern decorations */
+.decor-dots {
+    position: absolute;
+    z-index: 0;
+}
+
+.decor-dots::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 119, 200, 0.12) 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+}
+
+.decor-dots-teal::before {
+    background-image: radial-gradient(rgba(0, 155, 124, 0.1) 1.5px, transparent 1.5px);
+}
+
+.decor-dots-grey::before {
+    background-image: radial-gradient(rgba(221, 227, 232, 0.6) 1.5px, transparent 1.5px);
+}
+
+/* Gradient blob decorations */
+.decor-blob {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    filter: blur(40px);
+    z-index: 0;
+}
+
+.decor-blob-blue {
+    background: linear-gradient(135deg, rgba(0, 119, 200, 0.1) 0%, rgba(0, 91, 153, 0.05) 100%);
+}
+
+.decor-blob-cyan {
+    background: linear-gradient(135deg, rgba(77, 199, 227, 0.12) 0%, rgba(0, 119, 200, 0.06) 100%);
+}
+
+.decor-blob-teal {
+    background: linear-gradient(135deg, rgba(0, 155, 124, 0.1) 0%, rgba(77, 199, 227, 0.05) 100%);
+}
+
+/* Line decorations */
+.decor-line {
+    position: absolute;
+    z-index: 0;
+}
+
+.decor-line-h {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 119, 200, 0.1) 50%, transparent 100%);
+}
+
+.decor-line-v {
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 119, 200, 0.1) 50%, transparent 100%);
+}
+
+/* Cross/Plus decorations */
+.decor-cross {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 0;
+}
+
+.decor-cross::before,
+.decor-cross::after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 119, 200, 0.12);
+}
+
+.decor-cross::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.decor-cross::after {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+/* Square decorations */
+.decor-square {
+    position: absolute;
+    border: 2px solid rgba(0, 119, 200, 0.08);
+    z-index: 0;
+}
+
+.decor-square-filled {
+    background: rgba(0, 119, 200, 0.04);
+    border: none;
+}
+
+/* Triangle decorations */
+.decor-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 0;
+}
+
+.decor-triangle-blue {
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 50px solid rgba(0, 119, 200, 0.06);
+}
+
+/* Hexagon decorations */
+.decor-hex {
+    position: absolute;
+    width: 60px;
+    height: 35px;
+    background: rgba(0, 119, 200, 0.05);
+    z-index: 0;
+}
+
+.decor-hex::before,
+.decor-hex::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+
+.decor-hex::before {
+    bottom: 100%;
+    border-bottom: 17px solid rgba(0, 119, 200, 0.05);
+}
+
+.decor-hex::after {
+    top: 100%;
+    border-top: 17px solid rgba(0, 119, 200, 0.05);
+}
+
 *,
 *::before,
 *::after {
@@ -537,6 +734,46 @@ img {
 
 .why {
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Why Choose Us - Decorative Elements */
+.why::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 119, 200, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.why::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 155, 124, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.why .three-cards {
+    position: relative;
+    z-index: 1;
+}
+
+.why .section-title,
+.why .section-subtitle {
+    position: relative;
+    z-index: 1;
 }
 
 .three-cards {
@@ -612,6 +849,61 @@ img {
     background: var(--white);
     position: relative;
     overflow: hidden;
+}
+
+/* Services - Decorative Elements */
+.services::before {
+    content: '';
+    position: absolute;
+    top: 100px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(77, 199, 227, 0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.services::after {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    right: -100px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 91, 153, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Services dotted pattern */
+.services .services-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    width: 120px;
+    height: 120px;
+    background-image: radial-gradient(rgba(0, 119, 200, 0.1) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Services ring decoration */
+.services .services-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 100px;
+    left: 30px;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(0, 155, 124, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .section-subtitle .highlight {
@@ -778,6 +1070,69 @@ img {
 
 .quote-section {
     background: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Quote Section - Decorative Elements */
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0, 119, 200, 0.05) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.quote-section::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 155, 124, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.quote-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Quote section corner decorations */
+.quote-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 100px;
+    height: 100px;
+    border-left: 3px solid rgba(0, 119, 200, 0.1);
+    border-top: 3px solid rgba(0, 119, 200, 0.1);
+    border-radius: 20px 0 0 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.quote-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    border-right: 3px solid rgba(0, 155, 124, 0.1);
+    border-bottom: 3px solid rgba(0, 155, 124, 0.1);
+    border-radius: 0 0 20px 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .quote-wrapper {
@@ -790,6 +1145,7 @@ img {
     background: linear-gradient(135deg, var(--light-bg) 0%, #EEF2F5 100%);
     box-shadow: var(--shadow-lg);
     border: 1px solid rgba(221,227,232,0.5);
+    position: relative;
 }
 
 .quote-card {
@@ -919,11 +1275,63 @@ img {
     overflow: hidden;
 }
 
+/* Footer - Decorative Elements */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 10%;
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(0, 119, 200, 0.08) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.site-footer::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(77, 199, 227, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
 .footer-gradient {
     position: absolute;
     inset: 0;
     background: var(--midnight-navy);
     z-index: -1;
+}
+
+/* Footer top decorative line */
+.footer-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--royal-blue) 0%, var(--ocean-blue) 50%, var(--teal-green) 100%);
+    z-index: 1;
+}
+
+/* Footer dotted pattern decoration */
+.footer-gradient::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 12px 12px;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .footer-inner {
