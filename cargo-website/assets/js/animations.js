@@ -1,26 +1,123 @@
 /**
  * Premium Animations
- * Scroll reveal, icon hover effects, and micro-interactions
+ * Parallax, scroll-triggered animations, floating effects, and micro-interactions
+ * Optimized for performance
  */
 
 (function() {
     'use strict';
 
+    // Configuration
+    const CONFIG = {
+        parallaxEnabled: true,
+        floatEnabled: true,
+        scrollRevealEnabled: true,
+        throttleMs: 16, // ~60fps
+        mobileBreakpoint: 768
+    };
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Check if mobile
+    const isMobile = () => window.innerWidth <= CONFIG.mobileBreakpoint;
+
     /**
-     * Scroll Reveal Animation
-     * Reveals elements with fade-in effect as they enter viewport
+     * Request Animation Frame wrapper
+     */
+    function rafCallback(callback) {
+        let ticking = false;
+        return function(...args) {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    callback.apply(this, args);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+    }
+
+    /**
+     * Parallax Effect for Background Elements
+     * Elements move at different speeds based on data-speed attribute
+     */
+    function initParallax() {
+        if (prefersReducedMotion || isMobile() || !CONFIG.parallaxEnabled) return;
+
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        if (parallaxElements.length === 0) return;
+
+        const handleParallax = rafCallback(() => {
+            const scrollY = window.pageYOffset;
+
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.speed) || 0.1;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + scrollY;
+                const elementCenter = elementTop + rect.height / 2;
+                const viewportCenter = scrollY + window.innerHeight / 2;
+                const distance = viewportCenter - elementCenter;
+                
+                // Only animate if element is reasonably close to viewport
+                if (Math.abs(distance) < window.innerHeight * 1.5) {
+                    const yOffset = distance * speed;
+                    el.style.transform = `translateY(${yOffset}px)`;
+                }
+            });
+        });
+
+        window.addEventListener('scroll', handleParallax, { passive: true });
+        handleParallax(); // Initial call
+    }
+
+    /**
+     * Enhanced Floating Animation with Intersection Observer
+     * Only animate elements when they're in view
+     */
+    function initFloatingAnimations() {
+        if (prefersReducedMotion || !CONFIG.floatEnabled) return;
+
+        const floatElements = document.querySelectorAll('.float-element');
+        if (floatElements.length === 0) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                } else {
+                    entry.target.style.animationPlayState = 'paused';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        floatElements.forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    }
+
+    /**
+     * Scroll-Triggered Reveal Animations
+     * Elements fade in as they enter the viewport
      */
     function initScrollReveal() {
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        if (!CONFIG.scrollRevealEnabled) return;
+
+        // Auto-add scroll animation classes
+        autoAddScrollClasses();
+
+        const revealElements = document.querySelectorAll(
+            '.scroll-fade-in, .scroll-slide-left, .scroll-slide-right, .scroll-scale-in, ' +
+            '.reveal, .reveal-left, .reveal-right, .reveal-scale'
+        );
         
         if (revealElements.length === 0) return;
 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Optionally unobserve after revealing
-                    // revealObserver.unobserve(entry.target);
+                    entry.target.classList.add('is-visible', 'active');
                 }
             });
         }, {
@@ -32,81 +129,87 @@
     }
 
     /**
-     * Auto-add reveal classes to sections
-     * Automatically applies scroll reveal to key sections
+     * Auto-add scroll animation classes to elements
      */
-    function autoAddRevealClasses() {
-        // Add reveal to section titles and subtitles
-        const titles = document.querySelectorAll('.section-title, .section-subtitle');
-        titles.forEach(el => {
-            if (!el.classList.contains('reveal')) {
+    function autoAddScrollClasses() {
+        // Section titles and subtitles
+        document.querySelectorAll('.section-title, .section-subtitle').forEach(el => {
+            if (!el.classList.contains('reveal') && !el.classList.contains('scroll-fade-in')) {
                 el.classList.add('reveal');
             }
         });
 
-        // Add reveal to feature cards with stagger
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach((card, index) => {
-            card.classList.add('reveal');
-            card.style.transitionDelay = `${0.1 + index * 0.1}s`;
-        });
-
-        // Add reveal to service cards
-        const serviceCards = document.querySelectorAll('.service-card-new');
-        serviceCards.forEach((card, index) => {
-            card.classList.add('reveal');
-            card.style.transitionDelay = `${0.1 + (index % 2) * 0.15}s`;
-        });
-
-        // Add reveal to how cards
-        const howCards = document.querySelectorAll('.how-card');
-        howCards.forEach((card, index) => {
-            card.classList.add('reveal');
-            card.style.transitionDelay = `${0.1 + index * 0.1}s`;
-        });
-
-        // Add reveal to quote section elements
-        const quoteCard = document.querySelector('.quote-card');
-        const quoteGraphic = document.querySelector('.quote-graphic');
-        if (quoteCard) quoteCard.classList.add('reveal-left');
-        if (quoteGraphic) quoteGraphic.classList.add('reveal-right');
-    }
-
-    /**
-     * Parallax effect for decorative elements
-     */
-    function initParallax() {
-        const parallaxElements = document.querySelectorAll('.floating-circle, .animated-blob');
-        
-        if (parallaxElements.length === 0) return;
-
-        let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    
-                    parallaxElements.forEach((el, index) => {
-                        const speed = 0.05 + (index * 0.02);
-                        const yPos = scrollY * speed;
-                        el.style.transform = `translateY(${yPos}px)`;
-                    });
-
-                    ticking = false;
-                });
-
-                ticking = true;
+        // Feature cards with stagger
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            if (!card.classList.contains('reveal')) {
+                card.classList.add('reveal');
+                card.style.transitionDelay = `${0.1 + index * 0.1}s`;
             }
         });
+
+        // Service cards
+        document.querySelectorAll('.service-card-new').forEach((card, index) => {
+            if (!card.classList.contains('reveal')) {
+                card.classList.add('reveal');
+                card.style.transitionDelay = `${0.1 + (index % 2) * 0.15}s`;
+            }
+        });
+
+        // How cards
+        document.querySelectorAll('.how-card').forEach((card, index) => {
+            if (!card.classList.contains('reveal')) {
+                card.classList.add('reveal');
+                card.style.transitionDelay = `${0.1 + index * 0.1}s`;
+            }
+        });
+
+        // Quote section
+        const quoteCard = document.querySelector('.quote-card');
+        const quoteGraphic = document.querySelector('.quote-graphic');
+        if (quoteCard && !quoteCard.classList.contains('reveal-left')) {
+            quoteCard.classList.add('reveal-left');
+        }
+        if (quoteGraphic && !quoteGraphic.classList.contains('reveal-right')) {
+            quoteGraphic.classList.add('reveal-right');
+        }
     }
 
     /**
-     * Counter animation for statistics
+     * Background Shape Slide on Scroll
+     * Subtle movement of background decorative elements
+     */
+    function initBackgroundSlide() {
+        if (prefersReducedMotion || isMobile()) return;
+
+        const bgElements = document.querySelectorAll('.section-decorations, .section-bg-elements');
+        if (bgElements.length === 0) return;
+
+        const handleSlide = rafCallback(() => {
+            bgElements.forEach(el => {
+                const parent = el.closest('section');
+                if (!parent) return;
+
+                const rect = parent.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                    const offset = (progress - 0.5) * 30; // Max 15px movement
+                    
+                    // Apply subtle transform to decorations
+                    el.style.transform = `translateY(${offset}px)`;
+                }
+            });
+        });
+
+        window.addEventListener('scroll', handleSlide, { passive: true });
+    }
+
+    /**
+     * Counter Animation for Statistics
      */
     function initCounterAnimation() {
         const counters = document.querySelectorAll('[data-counter]');
-        
         if (counters.length === 0) return;
 
         const counterObserver = new IntersectionObserver((entries) => {
@@ -120,8 +223,6 @@
                     function updateCounter(currentTime) {
                         const elapsed = currentTime - startTime;
                         const progress = Math.min(elapsed / duration, 1);
-                        
-                        // Easing function for smooth animation
                         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
                         const currentValue = Math.floor(easeOutQuart * finalValue);
                         
@@ -144,10 +245,11 @@
     }
 
     /**
-     * Smooth hover effects for interactive elements
+     * Magnetic Button Effect
      */
-    function initHoverEffects() {
-        // Add magnetic effect to buttons
+    function initMagneticButtons() {
+        if (prefersReducedMotion || isMobile()) return;
+
         const buttons = document.querySelectorAll('.btn');
         
         buttons.forEach(btn => {
@@ -156,7 +258,7 @@
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 
-                btn.style.transform = `translateY(-3px) scale(1.02) translate(${x * 0.1}px, ${y * 0.1}px)`;
+                btn.style.transform = `translateY(-3px) scale(1.02) translate(${x * 0.08}px, ${y * 0.08}px)`;
             });
 
             btn.addEventListener('mouseleave', () => {
@@ -166,43 +268,55 @@
     }
 
     /**
-     * Typing effect for hero text (optional)
+     * Smooth Section Entrance
+     * Trigger animations when sections come into view
      */
-    function initTypingEffect() {
-        const typingElements = document.querySelectorAll('[data-typing]');
+    function initSectionEntrance() {
+        const sections = document.querySelectorAll('.section, .hero');
         
-        typingElements.forEach(el => {
-            const text = el.getAttribute('data-typing');
-            const speed = parseInt(el.getAttribute('data-typing-speed') || 100, 10);
-            
-            el.textContent = '';
-            let i = 0;
-
-            function type() {
-                if (i < text.length) {
-                    el.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-
-            // Start typing when element is visible
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    type();
-                    observer.unobserve(el);
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                    
+                    // Trigger child animations
+                    const bgElements = entry.target.querySelector('.section-bg-elements, .hero-bg-elements');
+                    if (bgElements) {
+                        bgElements.classList.add('animate-in');
+                    }
                 }
             });
-
-            observer.observe(el);
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px'
         });
+
+        sections.forEach(section => sectionObserver.observe(section));
+    }
+
+    /**
+     * Initialize Line Drawing Animation for How We Work section
+     */
+    function initLineDrawing() {
+        const lineDesign = document.querySelector('.how-line-design');
+        if (!lineDesign) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    lineDesign.classList.add('animate');
+                    observer.unobserve(lineDesign);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(lineDesign);
     }
 
     /**
      * Initialize all animations
      */
     function init() {
-        // Wait for DOM to be fully loaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initAll);
         } else {
@@ -211,14 +325,32 @@
     }
 
     function initAll() {
-        autoAddRevealClasses();
+        // Core animations
         initScrollReveal();
+        initFloatingAnimations();
+        initSectionEntrance();
+        
+        // Parallax (desktop only)
+        if (!isMobile()) {
+            initParallax();
+            initBackgroundSlide();
+            initMagneticButtons();
+        }
+        
+        // Additional effects
         initCounterAnimation();
-        // initHoverEffects(); // Uncomment for magnetic button effect
-        // initParallax(); // Uncomment for parallax effect
+        initLineDrawing();
+        
+        console.log('✨ Premium animations initialized');
     }
 
     // Run initialization
     init();
+
+    // Export for potential external use
+    window.PremiumAnimations = {
+        init,
+        CONFIG
+    };
 
 })();
