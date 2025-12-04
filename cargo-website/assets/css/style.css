@@ -416,18 +416,214 @@
     opacity: 1;
 }
 
-.section-bg-pattern::before {
+/* ============= TRAVEL/ROUTE STYLE DECORATIONS (Like Reference) ============= */
+
+/* Curved flight/route path - like the reference image */
+.decor-flight-path {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.decor-flight-path::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image: 
-        /* Truck patterns */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%23005B99' opacity='0.03' d='M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48zm368-48c0 26.5-21.5 48-48 48s-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48z'/%3E%3C/svg%3E"),
-        /* Location pin patterns */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%23009B7C' opacity='0.03' d='M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/%3E%3C/svg%3E");
-    background-position: 5% 10%, 90% 85%;
-    background-size: 80px, 40px;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(0, 119, 200, 0.08);
+    border-radius: 50% 50% 0 0;
+    border-bottom: none;
+}
+
+/* Airplane on route */
+.decor-plane {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0.06;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%23005B99' d='M482.3 192c34.2 0 93.7 29 93.7 64c0 36-59.5 64-93.7 64l-116.6 0L265.2 495.9c-5.7 10-16.3 16.1-27.8 16.1l-56.2 0c-10.6 0-18.3-10.2-15.4-20.4l49-171.6L112 320 68.8 377.6c-3 4-7.8 6.4-12.8 6.4l-42 0c-7.8 0-14-6.3-14-14c0-1.3 .2-2.6 .5-3.9L32 256 .5 145.9c-.4-1.3-.5-2.6-.5-3.9c0-7.8 6.3-14 14-14l42 0c5 0 9.8 2.4 12.8 6.4L112 192l102.9 0-49-171.6C162.9 10.2 170.6 0 181.2 0l56.2 0c11.5 0 22.1 6.2 27.8 16.1L365.7 192l116.6 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(45deg);
+}
+
+/* Dotted connection line - vertical */
+.decor-dotted-line-v {
+    position: absolute;
+    width: 2px;
+    background-image: radial-gradient(circle, rgba(0, 119, 200, 0.15) 1px, transparent 1px);
+    background-size: 2px 8px;
+    z-index: 0;
+}
+
+/* Dotted connection line - horizontal */
+.decor-dotted-line-h {
+    position: absolute;
+    height: 2px;
+    background-image: radial-gradient(circle, rgba(0, 119, 200, 0.15) 1px, transparent 1px);
+    background-size: 8px 2px;
+    z-index: 0;
+}
+
+/* Location marker with pulse effect */
+.decor-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 119, 200, 0.15);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.decor-marker::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid rgba(0, 119, 200, 0.08);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.decor-marker-teal {
+    background: rgba(0, 155, 124, 0.15);
+}
+
+.decor-marker-teal::before {
+    border-color: rgba(0, 155, 124, 0.08);
+}
+
+/* Curved swoosh line - like the orange curve in reference */
+.decor-swoosh {
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    z-index: 0;
+    overflow: visible;
+}
+
+.decor-swoosh::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: rgba(0, 119, 200, 0.06);
+    border-radius: 50%;
+    transform: rotate(-20deg);
+}
+
+/* Large decorative arc */
+.decor-arc {
+    position: absolute;
+    border: 2px solid rgba(0, 119, 200, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.decor-arc-dashed {
+    border-style: dashed;
+    border-color: rgba(0, 119, 200, 0.06);
+}
+
+/* Scattered small dots pattern */
+.decor-scatter-dots {
+    position: absolute;
+    z-index: 0;
+}
+
+.decor-scatter-dots::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 119, 200, 0.1);
+    border-radius: 50%;
+}
+
+.decor-scatter-dots::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(0, 155, 124, 0.1);
+    border-radius: 50%;
+    top: 20px;
+    left: 15px;
+}
+
+/* World map outline background - subtle */
+.bg-world-routes {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-world-routes::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background-image: 
+        /* Curved route lines */
+        radial-gradient(ellipse 600px 300px at 20% 30%, transparent 98%, rgba(0, 119, 200, 0.04) 98.5%, transparent 99%),
+        radial-gradient(ellipse 500px 250px at 70% 60%, transparent 98%, rgba(0, 155, 124, 0.04) 98.5%, transparent 99%),
+        radial-gradient(ellipse 400px 200px at 40% 80%, transparent 98%, rgba(77, 199, 227, 0.03) 98.5%, transparent 99%),
+        /* Location dots */
+        radial-gradient(circle at 15% 25%, rgba(0, 119, 200, 0.08) 3px, transparent 3px),
+        radial-gradient(circle at 25% 35%, rgba(0, 155, 124, 0.08) 2px, transparent 2px),
+        radial-gradient(circle at 75% 55%, rgba(0, 119, 200, 0.08) 3px, transparent 3px),
+        radial-gradient(circle at 85% 45%, rgba(77, 199, 227, 0.08) 2px, transparent 2px),
+        radial-gradient(circle at 45% 75%, rgba(0, 155, 124, 0.08) 3px, transparent 3px),
+        radial-gradient(circle at 60% 20%, rgba(0, 119, 200, 0.06) 2px, transparent 2px);
+    opacity: 1;
+}
+
+/* Connection lines between points */
+.decor-connection {
+    position: absolute;
+    z-index: 0;
+    overflow: visible;
+}
+
+.decor-connection::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    border: 2px dashed rgba(0, 119, 200, 0.06);
+    border-radius: 0 50% 50% 0;
+    border-left: none;
+    transform-origin: left center;
+}
+
+/* Small floating icons cluster */
+.decor-icon-cluster {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Arrow indicator */
+.decor-arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0.08;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23005B99' d='M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 }
 
 /* ============= PREMIUM ANIMATIONS ============= */
