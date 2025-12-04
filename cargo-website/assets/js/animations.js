@@ -13,6 +13,7 @@
         floatEnabled: true,
         scrollRevealEnabled: true,
         layeredParallaxEnabled: true,
+        silhouetteParallaxEnabled: true,
         throttleMs: 16, // ~60fps
         mobileBreakpoint: 768,
         // 3-Layer Parallax Speed Configuration
@@ -20,6 +21,17 @@
             blobs: 0.15,      // Layer 1: Soft blobs
             grid: -0.1,       // Layer 2: Grid/dots (negative = opposite direction)
             shapes: 0.1       // Layer 3: Abstract shapes
+        },
+        // Silhouette SVG parallax speeds (different for each type)
+        silhouetteSpeeds: {
+            truck: 0.08,
+            car: 0.12,
+            plane: 0.15,
+            globe: 0.06,
+            package: 0.10,
+            location: 0.09,
+            container: 0.07,
+            checklist: 0.11
         }
     };
 
@@ -201,6 +213,156 @@
         }, { threshold: 0, rootMargin: '100px' });
 
         blobs.forEach(blob => observer.observe(blob));
+    }
+
+    /**
+     * Silhouette SVG Parallax Animation
+     * Applies scroll-based parallax movement to logistics decoration elements
+     * Each element type has a different speed for independent movement
+     */
+    function initSilhouetteParallax() {
+        if (prefersReducedMotion || isMobile() || !CONFIG.silhouetteParallaxEnabled) return;
+
+        const silhouetteSelectors = [
+            '.decor-truck',
+            '.decor-car', 
+            '.decor-plane',
+            '.decor-globe',
+            '.decor-package',
+            '.decor-location',
+            '.decor-container',
+            '.decor-checklist'
+        ];
+
+        const silhouettes = document.querySelectorAll(silhouetteSelectors.join(', '));
+        if (silhouettes.length === 0) return;
+
+        // Store original positions and assign speeds
+        const silhouetteData = [];
+        silhouettes.forEach((el, index) => {
+            // Determine element type for speed
+            let speed = 0.1;
+            if (el.classList.contains('decor-truck')) speed = CONFIG.silhouetteSpeeds.truck;
+            else if (el.classList.contains('decor-car')) speed = CONFIG.silhouetteSpeeds.car;
+            else if (el.classList.contains('decor-plane')) speed = CONFIG.silhouetteSpeeds.plane;
+            else if (el.classList.contains('decor-globe')) speed = CONFIG.silhouetteSpeeds.globe;
+            else if (el.classList.contains('decor-package')) speed = CONFIG.silhouetteSpeeds.package;
+            else if (el.classList.contains('decor-location')) speed = CONFIG.silhouetteSpeeds.location;
+            else if (el.classList.contains('decor-container')) speed = CONFIG.silhouetteSpeeds.container;
+            else if (el.classList.contains('decor-checklist')) speed = CONFIG.silhouetteSpeeds.checklist;
+
+            // Alternate direction for some elements
+            if (index % 3 === 0) speed = -speed;
+
+            silhouetteData.push({
+                element: el,
+                speed: speed,
+                // Get existing transform rotation if any
+                baseRotation: getComputedRotation(el)
+            });
+        });
+
+        let lastScrollY = 0;
+        let targetScrollY = 0;
+        let rafId = null;
+
+        // Smooth interpolation
+        const lerp = (start, end, factor) => start + (end - start) * factor;
+
+        const updateSilhouettes = () => {
+            lastScrollY = lerp(lastScrollY, targetScrollY, 0.08);
+
+            silhouetteData.forEach(({ element, speed, baseRotation }) => {
+                const section = element.closest('section, .hero, footer');
+                if (!section) return;
+
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    const yOffset = lastScrollY * speed;
+                    const subtleRotation = Math.sin(lastScrollY * 0.002 + speed * 100) * 1.5;
+                    
+                    // Combine parallax with base rotation
+                    element.style.transform = `translateY(${yOffset}px) rotate(${baseRotation + subtleRotation}deg)`;
+                }
+            });
+
+            if (Math.abs(lastScrollY - targetScrollY) > 0.5) {
+                rafId = requestAnimationFrame(updateSilhouettes);
+            } else {
+                rafId = null;
+            }
+        };
+
+        const handleScroll = () => {
+            targetScrollY = window.pageYOffset;
+            if (!rafId) {
+                rafId = requestAnimationFrame(updateSilhouettes);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Initial update
+        targetScrollY = window.pageYOffset;
+        lastScrollY = targetScrollY;
+        updateSilhouettes();
+    }
+
+    /**
+     * Helper to extract rotation from element's transform
+     */
+    function getComputedRotation(element) {
+        const style = window.getComputedStyle(element);
+        const transform = style.transform || style.webkitTransform;
+        
+        if (transform === 'none' || !transform) return 0;
+
+        // Check for rotate in transform string
+        const rotateMatch = element.style.transform?.match(/rotate\(([^)]+)\)/);
+        if (rotateMatch) {
+            return parseFloat(rotateMatch[1]) || 0;
+        }
+
+        // For matrix transforms, calculate rotation
+        const values = transform.match(/matrix.*\((.+)\)/);
+        if (values) {
+            const parts = values[1].split(',').map(v => parseFloat(v.trim()));
+            if (parts.length >= 6) {
+                const a = parts[0];
+                const b = parts[1];
+                return Math.round(Math.atan2(b, a) * (180 / Math.PI));
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Control silhouette floating animations based on visibility
+     */
+    function initSilhouetteAnimationControl() {
+        if (prefersReducedMotion || isMobile()) return;
+
+        const silhouettes = document.querySelectorAll(
+            '.decor-truck, .decor-car, .decor-plane, .decor-globe, .decor-package'
+        );
+        if (silhouettes.length === 0) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                } else {
+                    entry.target.style.animationPlayState = 'paused';
+                }
+            });
+        }, { threshold: 0, rootMargin: '50px' });
+
+        silhouettes.forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
     }
 
     /**
@@ -443,13 +605,16 @@
             initParallax();
             initBackgroundSlide();
             initMagneticButtons();
+            // Silhouette SVG parallax and animation control
+            initSilhouetteParallax();
+            initSilhouetteAnimationControl();
         }
         
         // Additional effects
         initCounterAnimation();
         initLineDrawing();
         
-        console.log('✨ Premium animations initialized (3-layer parallax: ' + (!isMobile() && !isLowPowerMode()) + ')');
+        console.log('✨ Premium animations initialized (silhouette parallax: ' + (!isMobile() && !isLowPowerMode()) + ')');
     }
 
     // Run initialization
@@ -464,6 +629,9 @@
             CONFIG.layeredParallaxEnabled = enabled;
             const container = document.querySelector('.parallax-bg-container');
             if (container) container.style.display = enabled ? '' : 'none';
+        },
+        toggleSilhouetteParallax: (enabled) => {
+            CONFIG.silhouetteParallaxEnabled = enabled;
         }
     };
 
