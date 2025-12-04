@@ -1138,32 +1138,7 @@ img {
     position: relative;
     height: 650px;
     margin-top: 118px; /* top info bar (38px) + header (80px) */
-    overflow: visible;
-}
-
-/* Hero curved bottom corners - left and right */
-.hero::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 50%;
-    height: 80px;
-    background: var(--white);
-    border-radius: 0 100px 0 0;
-    z-index: 6;
-}
-
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    right: 0;
-    width: 50%;
-    height: 80px;
-    background: var(--white);
-    border-radius: 100px 0 0 0;
-    z-index: 6;
+    overflow: hidden;
 }
 
 /* Hero Slider Container */
