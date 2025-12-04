@@ -48,6 +48,62 @@
     --link-color: var(--royal-blue);
     --link-hover: var(--ocean-blue);
     --hover-accent: var(--soft-cyan);
+    
+    /* Enterprise Typography */
+    --font-heading: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* Font Sizes - Enterprise Scale */
+    --fs-hero: 54px;
+    --fs-section-title: 34px;
+    --fs-card-title: 21px;
+    --fs-body: 18px;
+    --fs-small: 16px;
+    --fs-light: 16px;
+    --fs-nav: 16px;
+    --fs-button: 16px;
+    --fs-label: 14px;
+    --fs-caption: 14px;
+    
+    /* Font Weights */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    
+    /* Spacing Scale */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 40px;
+    --space-xl: 64px;
+    --space-2xl: 100px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 32px;
+    
+    /* Shadows - Enterprise Depth */
+    --shadow-sm: 0 2px 4px rgba(10,26,47,0.04), 0 1px 2px rgba(10,26,47,0.06);
+    --shadow-md: 0 4px 6px rgba(10,26,47,0.05), 0 10px 20px rgba(10,26,47,0.08);
+    --shadow-lg: 0 10px 25px rgba(10,26,47,0.08), 0 20px 48px rgba(10,26,47,0.1);
+    --shadow-xl: 0 25px 50px rgba(10,26,47,0.12), 0 12px 24px rgba(10,26,47,0.08);
+    --shadow-glow: 0 0 40px rgba(0,91,153,0.15);
+    --shadow-card: 0 4px 20px rgba(10,26,47,0.06), 0 1px 3px rgba(10,26,47,0.08);
+    --shadow-card-hover: 0 12px 40px rgba(10,26,47,0.12), 0 4px 12px rgba(10,26,47,0.08);
+    
+    /* Premium Shadows */
+    --shadow-premium: 0 10px 30px rgba(0,0,0,0.07);
+    --shadow-premium-hover: 0 20px 50px rgba(0,0,0,0.12);
+    --shadow-glow-blue: 0 0 30px rgba(0, 119, 200, 0.25);
+    --shadow-glow-teal: 0 0 30px rgba(0, 155, 124, 0.25);
+    
+    /* Premium Border Radius */
+    --radius-premium: 22px;
+    --radius-card: 18px;
+}
 
 /* ============= 3-LAYER PARALLAX BACKGROUND SYSTEM ============= */
 
@@ -961,62 +1017,6 @@
         animation-duration: 12s;
     }
 }
-    
-    /* Enterprise Typography */
-    --font-heading: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-    
-    /* Font Sizes - Enterprise Scale */
-    --fs-hero: 54px;
-    --fs-section-title: 34px;
-    --fs-card-title: 21px;
-    --fs-body: 18px;
-    --fs-small: 16px;
-    --fs-light: 16px;
-    --fs-nav: 16px;
-    --fs-button: 16px;
-    --fs-label: 14px;
-    --fs-caption: 14px;
-    
-    /* Font Weights */
-    --fw-regular: 400;
-    --fw-medium: 500;
-    --fw-semibold: 600;
-    --fw-bold: 700;
-    
-    /* Spacing Scale */
-    --space-xs: 8px;
-    --space-sm: 16px;
-    --space-md: 24px;
-    --space-lg: 40px;
-    --space-xl: 64px;
-    --space-2xl: 100px;
-    
-    /* Border Radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 32px;
-    
-    /* Shadows - Enterprise Depth */
-    --shadow-sm: 0 2px 4px rgba(10,26,47,0.04), 0 1px 2px rgba(10,26,47,0.06);
-    --shadow-md: 0 4px 6px rgba(10,26,47,0.05), 0 10px 20px rgba(10,26,47,0.08);
-    --shadow-lg: 0 10px 25px rgba(10,26,47,0.08), 0 20px 48px rgba(10,26,47,0.1);
-    --shadow-xl: 0 25px 50px rgba(10,26,47,0.12), 0 12px 24px rgba(10,26,47,0.08);
-    --shadow-glow: 0 0 40px rgba(0,91,153,0.15);
-    --shadow-card: 0 4px 20px rgba(10,26,47,0.06), 0 1px 3px rgba(10,26,47,0.08);
-    --shadow-card-hover: 0 12px 40px rgba(10,26,47,0.12), 0 4px 12px rgba(10,26,47,0.08);
-    
-    /* Premium Shadows */
-    --shadow-premium: 0 10px 30px rgba(0,0,0,0.07);
-    --shadow-premium-hover: 0 20px 50px rgba(0,0,0,0.12);
-    --shadow-glow-blue: 0 0 30px rgba(0, 119, 200, 0.25);
-    --shadow-glow-teal: 0 0 30px rgba(0, 155, 124, 0.25);
-    
-    /* Premium Border Radius */
-    --radius-premium: 22px;
-    --radius-card: 18px;
-}
 
 /* ============= DECORATIVE BACKGROUND STICKERS ============= */
 
@@ -1430,6 +1430,13 @@
 }
 
 @media (max-width: 768px) {
+    /* Hide all decorations on mobile for cleaner look */
+    .section-decorations,
+    .hero-decor,
+    .hero-pattern {
+        display: none !important;
+    }
+    
     .decor-truck,
     .decor-package,
     .decor-car,
@@ -1437,9 +1444,20 @@
     .decor-plane,
     .decor-location,
     .decor-container,
-    .decor-checklist {
-        animation: none !important;
-        opacity: 0.06;
+    .decor-checklist,
+    .decor-flight-path,
+    .decor-arc,
+    .decor-marker,
+    .decor-dotted-line-v,
+    .decor-dotted-line-h,
+    .decor-scatter-dots,
+    .decor-arrow,
+    .decor-dots,
+    .decor-swoosh,
+    .decor-route,
+    .decor-route-curved,
+    .bg-world-routes {
+        display: none !important;
     }
 }
 
@@ -2051,6 +2069,7 @@ img {
 .section {
     padding: var(--space-2xl) 0;
     position: relative;
+    overflow: hidden;
 }
 
 .section-title {
