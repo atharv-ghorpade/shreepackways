@@ -13,7 +13,7 @@
         floatEnabled: true,
         scrollRevealEnabled: true,
         layeredParallaxEnabled: true,
-        silhouetteParallaxEnabled: true,
+        silhouetteParallaxEnabled: false, // Disabled - causes visual issues
         throttleMs: 16, // ~60fps
         mobileBreakpoint: 768,
         // 3-Layer Parallax Speed Configuration
@@ -445,11 +445,13 @@
     /**
      * Background Shape Slide on Scroll
      * Subtle movement of background decorative elements
+     * Only moves bg-world-routes, NOT section-decorations (silhouettes)
      */
     function initBackgroundSlide() {
         if (prefersReducedMotion || isMobile()) return;
 
-        const bgElements = document.querySelectorAll('.section-decorations, .section-bg-elements');
+        // Only move bg-world-routes, not section-decorations
+        const bgElements = document.querySelectorAll('.bg-world-routes');
         if (bgElements.length === 0) return;
 
         const handleSlide = rafCallback(() => {
@@ -462,15 +464,46 @@
 
                 if (isVisible) {
                     const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                    const offset = (progress - 0.5) * 30; // Max 15px movement
+                    const offset = (progress - 0.5) * 40; // Subtle 20px movement
                     
-                    // Apply subtle transform to decorations
+                    // Apply subtle transform to bg-world-routes only
                     el.style.transform = `translateY(${offset}px)`;
                 }
             });
         });
 
         window.addEventListener('scroll', handleSlide, { passive: true });
+    }
+
+    /**
+     * Section Background Parallax
+     * Applies parallax effect to section ::before and ::after pseudo-elements
+     * Uses CSS custom properties to animate pseudo-elements
+     */
+    function initSectionBgParallax() {
+        if (prefersReducedMotion || isMobile()) return;
+
+        const sections = document.querySelectorAll('.why, .services, .quote-section, .section.how');
+        if (sections.length === 0) return;
+
+        const handleParallax = rafCallback(() => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                    const offset = (progress - 0.5) * 60; // 30px movement up/down
+                    
+                    // Set CSS custom property for pseudo-element parallax
+                    section.style.setProperty('--parallax-y', `${offset}px`);
+                }
+            });
+        });
+
+        window.addEventListener('scroll', handleParallax, { passive: true });
+        // Initial call
+        handleParallax();
     }
 
     /**
@@ -604,6 +637,7 @@
             initBlobAnimationControl();
             initParallax();
             initBackgroundSlide();
+            initSectionBgParallax(); // Section background parallax
             initMagneticButtons();
             // Silhouette SVG parallax and animation control
             initSilhouetteParallax();
@@ -614,7 +648,7 @@
         initCounterAnimation();
         initLineDrawing();
         
-        console.log('✨ Premium animations initialized (silhouette parallax: ' + (!isMobile() && !isLowPowerMode()) + ')');
+        console.log('✨ Premium animations initialized (section bg parallax: ' + (!isMobile() && !isLowPowerMode()) + ')');
     }
 
     // Run initialization
