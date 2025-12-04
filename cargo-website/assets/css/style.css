@@ -302,6 +302,134 @@
     border-top: 17px solid rgba(0, 119, 200, 0.05);
 }
 
+/* ============= LOGISTICS-THEMED BACKGROUND DECORATIONS ============= */
+
+/* Truck silhouette decoration */
+.decor-truck {
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    opacity: 0.04;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%23005B99' d='M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48zm368-48c0 26.5-21.5 48-48 48s-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Package/Box decoration */
+.decor-package {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.04;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23005B99' d='M50.7 58.5L0 160H208V32H93.7C75.5 32 58.9 42.3 50.7 58.5zM240 160H448L397.3 58.5C389.1 42.3 372.5 32 354.3 32H240V160zm208 32H0V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Location pin decoration */
+.decor-location {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    opacity: 0.05;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%23009B7C' d='M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Route path decoration (dashed line) */
+.decor-route {
+    position: absolute;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, rgba(0, 119, 200, 0.08) 0px, rgba(0, 119, 200, 0.08) 10px, transparent 10px, transparent 20px);
+    z-index: 0;
+}
+
+.decor-route-curved {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    border: 2px dashed rgba(0, 119, 200, 0.06);
+    border-radius: 0 100px 100px 0;
+    border-left: 0;
+    z-index: 0;
+}
+
+/* Car silhouette decoration */
+.decor-car {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    opacity: 0.04;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23005B99' d='M135.2 117.4L109.1 192H402.9l-26.1-74.6C372.3 104.6 360.2 96 346.6 96H165.4c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32H346.6c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2V400v48c0 17.7-14.3 32-32 32H448c-17.7 0-32-14.3-32-32V400H96v48c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V400 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Globe/World decoration */
+.decor-globe {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    opacity: 0.03;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23009B7C' d='M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.6 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.4 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Shipping container decoration */
+.decor-container {
+    position: absolute;
+    width: 70px;
+    height: 40px;
+    opacity: 0.04;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%23005B99' d='M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L320 240 36.9 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 288L573.6 228c36.7-10.5 59.4-48.2 52-85.5l294.6 56.2c36.6 7 64.1 38.1 64.1 75.4V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V273.1c0-37.3 27.6-68.4 64.1-75.4l296.6-56.2V288l-41.6 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Checklist/Clipboard decoration */
+.decor-checklist {
+    position: absolute;
+    width: 45px;
+    height: 55px;
+    opacity: 0.04;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%23009B7C' d='M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM305 273L177 401c-9.4 9.4-24.6 9.4-33.9 0L79 337c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L271 239c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Section background patterns with logistics elements */
+.section-bg-pattern {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+.section-bg-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        /* Truck patterns */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%23005B99' opacity='0.03' d='M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48zm368-48c0 26.5-21.5 48-48 48s-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48z'/%3E%3C/svg%3E"),
+        /* Location pin patterns */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='%23009B7C' opacity='0.03' d='M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z'/%3E%3C/svg%3E");
+    background-position: 5% 10%, 90% 85%;
+    background-size: 80px, 40px;
+    background-repeat: no-repeat;
+}
+
 /* ============= PREMIUM ANIMATIONS ============= */
 
 /* Floating animation for decorative elements */
@@ -804,21 +932,11 @@ img {
     height: 650px;
     margin-top: 118px; /* top info bar (38px) + header (80px) */
     overflow: hidden;
-    border-bottom-left-radius: 80px;
-    border-bottom-right-radius: 80px;
 }
 
-/* Hero curved bottom with wave effect */
+/* Hero bottom edge - no curve */
 .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: var(--white);
-    border-radius: 100% 100% 0 0 / 100% 100% 0 0;
-    z-index: 5;
+    display: none;
 }
 
 /* Hero Slider Container */
@@ -850,11 +968,11 @@ img {
     transition: opacity 1s ease, transform 8s ease-out;
 }
 
-/* Premium Blue Gradient Overlay */
+/* Premium Dark/Black Gradient Overlay */
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(10, 26, 47, 0.75) 0%, rgba(0, 91, 153, 0.6) 50%, rgba(0, 119, 200, 0.5) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(10, 26, 47, 0.7) 50%, rgba(20, 30, 40, 0.65) 100%);
     z-index: 2;
 }
 
