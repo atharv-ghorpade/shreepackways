@@ -1,7 +1,7 @@
 /**
  * Premium Animations
  * Parallax, scroll-triggered animations, floating effects, and micro-interactions
- * Optimized for performance
+ * Optimized for performance with 3-layer parallax system
  */
 
 (function() {
@@ -12,8 +12,15 @@
         parallaxEnabled: true,
         floatEnabled: true,
         scrollRevealEnabled: true,
+        layeredParallaxEnabled: true,
         throttleMs: 16, // ~60fps
-        mobileBreakpoint: 768
+        mobileBreakpoint: 768,
+        // 3-Layer Parallax Speed Configuration
+        parallaxSpeeds: {
+            blobs: 0.15,      // Layer 1: Soft blobs
+            grid: -0.1,       // Layer 2: Grid/dots (negative = opposite direction)
+            shapes: 0.1       // Layer 3: Abstract shapes
+        }
     };
 
     // Check for reduced motion preference
@@ -22,8 +29,17 @@
     // Check if mobile
     const isMobile = () => window.innerWidth <= CONFIG.mobileBreakpoint;
 
+    // Check for low power mode (battery saver)
+    const isLowPowerMode = () => {
+        // Check if device has touch and no hover (likely mobile/tablet)
+        const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        // Check for reduced data preference
+        const saveData = navigator.connection && navigator.connection.saveData;
+        return isTouch || saveData;
+    };
+
     /**
-     * Request Animation Frame wrapper
+     * Request Animation Frame wrapper with throttling
      */
     function rafCallback(callback) {
         let ticking = false;
@@ -39,7 +55,72 @@
     }
 
     /**
-     * Parallax Effect for Background Elements
+     * 3-Layer Parallax Background System
+     * Layer 1: Blob SVGs (speed: 0.15)
+     * Layer 2: Grid/Dot patterns (speed: -0.1, moves opposite)
+     * Layer 3: Abstract shapes (speed: 0.1)
+     */
+    function initLayeredParallax() {
+        if (prefersReducedMotion || isMobile() || isLowPowerMode() || !CONFIG.layeredParallaxEnabled) {
+            // Hide parallax container on disabled devices
+            const container = document.querySelector('.parallax-bg-container');
+            if (container) container.style.display = 'none';
+            return;
+        }
+
+        const parallaxLayers = document.querySelectorAll('.parallax-layer');
+        if (parallaxLayers.length === 0) return;
+
+        let lastScrollY = 0;
+        let targetScrollY = 0;
+        let rafId = null;
+
+        // Smooth interpolation for buttery animations
+        const lerp = (start, end, factor) => start + (end - start) * factor;
+
+        const updateParallax = () => {
+            // Smooth scroll value
+            lastScrollY = lerp(lastScrollY, targetScrollY, 0.1);
+
+            parallaxLayers.forEach(layer => {
+                const speed = parseFloat(layer.dataset.parallaxSpeed) || 0.1;
+                const yOffset = lastScrollY * speed;
+                
+                // Use transform3d for GPU acceleration
+                layer.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+            });
+
+            // Continue animation if not settled
+            if (Math.abs(lastScrollY - targetScrollY) > 0.5) {
+                rafId = requestAnimationFrame(updateParallax);
+            } else {
+                rafId = null;
+            }
+        };
+
+        const handleScroll = () => {
+            targetScrollY = window.pageYOffset;
+            
+            if (!rafId) {
+                rafId = requestAnimationFrame(updateParallax);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Initial position
+        targetScrollY = window.pageYOffset;
+        lastScrollY = targetScrollY;
+        updateParallax();
+
+        // Cleanup on page unload
+        window.addEventListener('unload', () => {
+            if (rafId) cancelAnimationFrame(rafId);
+        });
+    }
+
+    /**
+     * Parallax Effect for Individual Elements
      * Elements move at different speeds based on data-speed attribute
      */
     function initParallax() {
@@ -62,7 +143,7 @@
                 // Only animate if element is reasonably close to viewport
                 if (Math.abs(distance) < window.innerHeight * 1.5) {
                     const yOffset = distance * speed;
-                    el.style.transform = `translateY(${yOffset}px)`;
+                    el.style.transform = `translate3d(0, ${yOffset}px, 0)`;
                 }
             });
         });
@@ -95,6 +176,31 @@
             el.style.animationPlayState = 'paused';
             observer.observe(el);
         });
+    }
+
+    /**
+     * Pause blob floating animations when out of view
+     */
+    function initBlobAnimationControl() {
+        if (prefersReducedMotion || isMobile()) return;
+
+        const blobs = document.querySelectorAll('.parallax-blob');
+        if (blobs.length === 0) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const animations = entry.target.getAnimations();
+                animations.forEach(anim => {
+                    if (entry.isIntersecting) {
+                        anim.play();
+                    } else {
+                        anim.pause();
+                    }
+                });
+            });
+        }, { threshold: 0, rootMargin: '100px' });
+
+        blobs.forEach(blob => observer.observe(blob));
     }
 
     /**
@@ -330,8 +436,10 @@
         initFloatingAnimations();
         initSectionEntrance();
         
-        // Parallax (desktop only)
-        if (!isMobile()) {
+        // 3-Layer Parallax System (desktop only)
+        if (!isMobile() && !isLowPowerMode()) {
+            initLayeredParallax();
+            initBlobAnimationControl();
             initParallax();
             initBackgroundSlide();
             initMagneticButtons();
@@ -341,7 +449,7 @@
         initCounterAnimation();
         initLineDrawing();
         
-        console.log('✨ Premium animations initialized');
+        console.log('✨ Premium animations initialized (3-layer parallax: ' + (!isMobile() && !isLowPowerMode()) + ')');
     }
 
     // Run initialization
@@ -350,7 +458,13 @@
     // Export for potential external use
     window.PremiumAnimations = {
         init,
-        CONFIG
+        CONFIG,
+        // Allow runtime toggling
+        toggleParallax: (enabled) => {
+            CONFIG.layeredParallaxEnabled = enabled;
+            const container = document.querySelector('.parallax-bg-container');
+            if (container) container.style.display = enabled ? '' : 'none';
+        }
     };
 
 })();

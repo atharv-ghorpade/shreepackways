@@ -16,6 +16,59 @@
 </head>
 <body>
 
+    <!-- ================= GLOBAL PARALLAX BACKGROUND LAYERS ================= -->
+    <div class="parallax-bg-container" aria-hidden="true">
+        <!-- Layer 1: Soft Blob SVGs (speed: 0.15) -->
+        <div class="parallax-layer parallax-layer-blobs" data-parallax-speed="0.15">
+            <svg class="parallax-blob blob-1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="rgba(0,119,200,0.12)">
+                    <animate attributeName="d" dur="25s" repeatCount="indefinite"
+                        values="M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,341Q39,275,39.5,197.5Q40,120,107,77.5Q174,35,251,35Q328,35,384.5,83Q441,131,460,205.5Q479,280,440.5,320.5Z;
+                                M453.78,319.98Q416.56,389.96,346.78,442.48Q277,495,205.5,445.48Q134,395.96,97.78,324.98Q61.56,254,75.28,173Q89,92,165.5,53.48Q242,15,319.5,48.98Q397,82.96,439.78,156.48Q482.56,230,453.78,319.98Z;
+                                M411.39,322.87Q421.74,395.74,352.87,437.87Q284,480,215.13,437.87Q146.26,395.74,98.13,324.87Q50,254,98.13,183.13Q146.26,112.26,215.13,70.13Q284,28,352.87,70.13Q421.74,112.26,411.39,183.13Q401.04,254,411.39,322.87Z;
+                                M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,341Q39,275,39.5,197.5Q40,120,107,77.5Q174,35,251,35Q328,35,384.5,83Q441,131,460,205.5Q479,280,440.5,320.5Z"/>
+                </path>
+            </svg>
+            <svg class="parallax-blob blob-2" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="rgba(0,155,124,0.10)">
+                    <animate attributeName="d" dur="30s" repeatCount="indefinite"
+                        values="M432.5,294.5Q389,339,361.5,392Q334,445,267,445Q200,445,147.5,407.5Q95,370,66,302.5Q37,235,75,176Q113,117,166,74Q219,31,284,52Q349,73,397.5,114Q446,155,467,202.5Q488,250,432.5,294.5Z;
+                                M398.5,286.5Q373,323,350.5,367.5Q328,412,270.5,430.5Q213,449,165.5,410.5Q118,372,77.5,319Q37,266,62,206.5Q87,147,137,109Q187,71,252.5,52Q318,33,369.5,79.5Q421,126,427.5,188Q434,250,398.5,286.5Z;
+                                M432.5,294.5Q389,339,361.5,392Q334,445,267,445Q200,445,147.5,407.5Q95,370,66,302.5Q37,235,75,176Q113,117,166,74Q219,31,284,52Q349,73,397.5,114Q446,155,467,202.5Q488,250,432.5,294.5Z"/>
+                </path>
+            </svg>
+            <svg class="parallax-blob blob-3" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="rgba(77,199,227,0.08)">
+                    <animate attributeName="d" dur="22s" repeatCount="indefinite"
+                        values="M424.5,296.5Q393,343,360.5,389Q328,435,263,449Q198,463,149.5,418Q101,373,59.5,311Q18,249,59,186.5Q100,124,157.5,93.5Q215,63,279.5,55.5Q344,48,389,97.5Q434,147,449.5,198.5Q465,250,424.5,296.5Z;
+                                M411.5,307.5Q405,365,353.5,395Q302,425,246,433Q190,441,139.5,404.5Q89,368,64,306.5Q39,245,68.5,188Q98,131,150,89.5Q202,48,267,48.5Q332,49,380.5,92Q429,135,424,192.5Q419,250,411.5,307.5Z;
+                                M424.5,296.5Q393,343,360.5,389Q328,435,263,449Q198,463,149.5,418Q101,373,59.5,311Q18,249,59,186.5Q100,124,157.5,93.5Q215,63,279.5,55.5Q344,48,389,97.5Q434,147,449.5,198.5Q465,250,424.5,296.5Z"/>
+                </path>
+            </svg>
+        </div>
+        
+        <!-- Layer 2: Dotted/Grid Pattern (speed: -0.1, moves opposite) -->
+        <div class="parallax-layer parallax-layer-grid" data-parallax-speed="-0.1">
+            <div class="grid-pattern grid-pattern-1"></div>
+            <div class="grid-pattern grid-pattern-2"></div>
+            <div class="dot-pattern dot-pattern-1"></div>
+            <div class="dot-pattern dot-pattern-2"></div>
+        </div>
+        
+        <!-- Layer 3: Abstract Decorative Shapes (speed: 0.1) -->
+        <div class="parallax-layer parallax-layer-shapes" data-parallax-speed="0.1">
+            <div class="abstract-shape shape-circle shape-1"></div>
+            <div class="abstract-shape shape-circle shape-2"></div>
+            <div class="abstract-shape shape-ring shape-3"></div>
+            <div class="abstract-shape shape-ring shape-4"></div>
+            <div class="abstract-shape shape-square shape-5"></div>
+            <div class="abstract-shape shape-line shape-6"></div>
+            <div class="abstract-shape shape-line shape-7"></div>
+            <div class="abstract-shape shape-cross shape-8"></div>
+            <div class="abstract-shape shape-cross shape-9"></div>
+        </div>
+    </div>
+
     <!-- ================= TOP INFO BAR ================= -->
     <div class="top-info-bar">
         <div class="container info-bar-wrapper">
@@ -65,51 +118,6 @@
 
     <!-- ================= HERO ================= -->
     <section id="hero" class="hero">
-        <!-- Animated Background Elements -->
-        <div class="hero-bg-elements">
-            <!-- Top SVG Blob -->
-            <svg class="hero-blob hero-blob-top parallax-element" data-speed="0.3" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="blobGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(0,119,200,0.15)"/>
-                        <stop offset="100%" style="stop-color:rgba(77,199,227,0.08)"/>
-                    </linearGradient>
-                </defs>
-                <path fill="url(#blobGrad1)" class="blob-morph">
-                    <animate attributeName="d" dur="20s" repeatCount="indefinite"
-                        values="M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,341Q39,275,39.5,197.5Q40,120,107,77.5Q174,35,251,35Q328,35,384.5,83Q441,131,460,205.5Q479,280,440.5,320.5Z;
-                                M453.78,319.98Q416.56,389.96,346.78,442.48Q277,495,205.5,445.48Q134,395.96,97.78,324.98Q61.56,254,75.28,173Q89,92,165.5,53.48Q242,15,319.5,48.98Q397,82.96,439.78,156.48Q482.56,230,453.78,319.98Z;
-                                M411.39,322.87Q421.74,395.74,352.87,437.87Q284,480,215.13,437.87Q146.26,395.74,98.13,324.87Q50,254,98.13,183.13Q146.26,112.26,215.13,70.13Q284,28,352.87,70.13Q421.74,112.26,411.39,183.13Q401.04,254,411.39,322.87Z;
-                                M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,341Q39,275,39.5,197.5Q40,120,107,77.5Q174,35,251,35Q328,35,384.5,83Q441,131,460,205.5Q479,280,440.5,320.5Z"/>
-                </path>
-            </svg>
-            
-            <!-- Bottom SVG Blob -->
-            <svg class="hero-blob hero-blob-bottom parallax-element" data-speed="0.2" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="blobGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(0,155,124,0.12)"/>
-                        <stop offset="100%" style="stop-color:rgba(0,119,200,0.06)"/>
-                    </linearGradient>
-                </defs>
-                <path fill="url(#blobGrad2)" class="blob-morph">
-                    <animate attributeName="d" dur="25s" repeatCount="indefinite"
-                        values="M432.5,294.5Q389,339,361.5,392Q334,445,267,445Q200,445,147.5,407.5Q95,370,66,302.5Q37,235,75,176Q113,117,166,74Q219,31,284,52Q349,73,397.5,114Q446,155,467,202.5Q488,250,432.5,294.5Z;
-                                M398.5,286.5Q373,323,350.5,367.5Q328,412,270.5,430.5Q213,449,165.5,410.5Q118,372,77.5,319Q37,266,62,206.5Q87,147,137,109Q187,71,252.5,52Q318,33,369.5,79.5Q421,126,427.5,188Q434,250,398.5,286.5Z;
-                                M424.5,296.5Q393,343,360.5,389Q328,435,263,449Q198,463,149.5,418Q101,373,59.5,311Q18,249,59,186.5Q100,124,157.5,93.5Q215,63,279.5,55.5Q344,48,389,97.5Q434,147,449.5,198.5Q465,250,424.5,296.5Z;
-                                M432.5,294.5Q389,339,361.5,392Q334,445,267,445Q200,445,147.5,407.5Q95,370,66,302.5Q37,235,75,176Q113,117,166,74Q219,31,284,52Q349,73,397.5,114Q446,155,467,202.5Q488,250,432.5,294.5Z"/>
-                </path>
-            </svg>
-            
-            <!-- Floating Circles -->
-            <div class="hero-float-circle hero-float-circle-1 float-element" data-float-speed="slow"></div>
-            <div class="hero-float-circle hero-float-circle-2 float-element" data-float-speed="medium"></div>
-            <div class="hero-float-circle hero-float-circle-3 float-element" data-float-speed="fast"></div>
-            
-            <!-- Grid Pattern -->
-            <div class="hero-grid-pattern parallax-element" data-speed="0.1"></div>
-        </div>
-        
         <!-- Background Image Slider -->
         <div class="hero-slider">
             <div class="hero-slide" style="background-image: url('assets/img/car1.webp')"></div>
@@ -141,27 +149,6 @@
 
     <!-- ================= WHY CHOOSE US ================= -->
     <section id="why" class="section why">
-        <!-- Animated Background Elements -->
-        <div class="section-bg-elements">
-            <!-- Grid Pattern -->
-            <div class="section-grid-pattern parallax-element" data-speed="0.05"></div>
-            
-            <!-- Abstract Circles -->
-            <svg class="section-abstract-circle section-circle-1 float-element" data-float-speed="slow" viewBox="0 0 200 200">
-                <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(0,119,200,0.08)" stroke-width="1" stroke-dasharray="10 5"/>
-                <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(0,155,124,0.06)" stroke-width="1"/>
-            </svg>
-            <svg class="section-abstract-circle section-circle-2 float-element" data-float-speed="medium" viewBox="0 0 150 150">
-                <circle cx="75" cy="75" r="60" fill="rgba(77,199,227,0.04)"/>
-                <circle cx="75" cy="75" r="40" fill="none" stroke="rgba(0,119,200,0.08)" stroke-width="1"/>
-            </svg>
-            
-            <!-- Floating Dots Cluster -->
-            <div class="dots-cluster dots-cluster-1 float-element" data-float-speed="slow">
-                <span></span><span></span><span></span><span></span><span></span>
-            </div>
-        </div>
-        
         <!-- World Routes Background -->
         <div class="bg-world-routes"></div>
         <!-- Decorative Elements -->
@@ -225,36 +212,6 @@
 
     <!-- ================= OUR SERVICES ================= -->
     <section id="services" class="section services">
-        <!-- Animated Background Elements -->
-        <div class="section-bg-elements">
-            <!-- Gradient Blob -->
-            <svg class="section-blob section-blob-services parallax-element" data-speed="0.08" viewBox="0 0 600 600">
-                <defs>
-                    <linearGradient id="servicesBlobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(0,91,153,0.08)"/>
-                        <stop offset="50%" style="stop-color:rgba(0,119,200,0.05)"/>
-                        <stop offset="100%" style="stop-color:rgba(77,199,227,0.03)"/>
-                    </linearGradient>
-                </defs>
-                <ellipse cx="300" cy="300" rx="280" ry="250" fill="url(#servicesBlobGrad)" class="services-ellipse"/>
-            </svg>
-            
-            <!-- Parallax Icons -->
-            <div class="parallax-icon parallax-icon-truck parallax-element" data-speed="0.12">
-                <svg viewBox="0 0 640 512" fill="rgba(0,91,153,0.06)"><path d="M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48z"/></svg>
-            </div>
-            <div class="parallax-icon parallax-icon-box parallax-element" data-speed="0.15">
-                <svg viewBox="0 0 448 512" fill="rgba(0,155,124,0.05)"><path d="M50.7 58.5L0 160H208V32H93.7C75.5 32 58.9 42.3 50.7 58.5zM240 160H448L397.3 58.5C389.1 42.3 372.5 32 354.3 32H240V160zm208 32H0V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192z"/></svg>
-            </div>
-            <div class="parallax-icon parallax-icon-globe parallax-element" data-speed="0.1">
-                <svg viewBox="0 0 512 512" fill="rgba(0,119,200,0.05)"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.6 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 21 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.4 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5z"/></svg>
-            </div>
-            
-            <!-- Abstract Lines -->
-            <div class="abstract-line abstract-line-1"></div>
-            <div class="abstract-line abstract-line-2"></div>
-        </div>
-        
         <!-- World Routes Background -->
         <div class="bg-world-routes"></div>
         <!-- Decorative Elements -->
@@ -385,34 +342,6 @@
 
     <!-- ================= REQUEST QUOTE ================= -->
     <section id="quote" class="section quote-section">
-        <!-- Animated Background Elements -->
-        <div class="section-bg-elements">
-            <!-- Floating Shape Behind Form -->
-            <svg class="quote-floating-shape float-element" data-float-speed="slow" viewBox="0 0 400 400">
-                <defs>
-                    <linearGradient id="quoteShapeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:rgba(0,119,200,0.1)"/>
-                        <stop offset="100%" style="stop-color:rgba(0,155,124,0.05)"/>
-                    </linearGradient>
-                </defs>
-                <path fill="url(#quoteShapeGrad)" class="quote-shape-morph">
-                    <animate attributeName="d" dur="15s" repeatCount="indefinite"
-                        values="M200,50 Q350,100 350,200 Q350,300 200,350 Q50,300 50,200 Q50,100 200,50;
-                                M200,80 Q320,120 330,200 Q320,280 200,320 Q80,280 70,200 Q80,120 200,80;
-                                M200,50 Q350,100 350,200 Q350,300 200,350 Q50,300 50,200 Q50,100 200,50"/>
-                </path>
-            </svg>
-            
-            <!-- Decorative Rings -->
-            <div class="quote-ring quote-ring-1 float-element" data-float-speed="medium"></div>
-            <div class="quote-ring quote-ring-2 float-element" data-float-speed="slow"></div>
-            
-            <!-- Small Floating Dots -->
-            <div class="quote-dots float-element" data-float-speed="fast">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        
         <!-- World Routes Background -->
         <div class="bg-world-routes"></div>
         <!-- Decorative Elements -->
@@ -466,34 +395,6 @@
 
     <!-- ================= HOW WE WORK ================= -->
     <section class="section how">
-        <!-- Animated Background Elements -->
-        <div class="section-bg-elements">
-            <!-- Animated Line Design -->
-            <svg class="how-line-design" viewBox="0 0 1200 200" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:rgba(0,119,200,0)"/>
-                        <stop offset="50%" style="stop-color:rgba(0,119,200,0.15)"/>
-                        <stop offset="100%" style="stop-color:rgba(0,119,200,0)"/>
-                    </linearGradient>
-                </defs>
-                <path class="how-animated-line" d="M0,100 Q300,20 600,100 T1200,100" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
-                <path class="how-animated-line how-animated-line-2" d="M0,120 Q300,40 600,120 T1200,120" fill="none" stroke="url(#lineGrad)" stroke-width="1" stroke-dasharray="8 4"/>
-            </svg>
-            
-            <!-- Connection Dots -->
-            <div class="how-connection-dots">
-                <span class="connection-dot connection-dot-1"></span>
-                <span class="connection-dot connection-dot-2"></span>
-                <span class="connection-dot connection-dot-3"></span>
-                <span class="connection-dot connection-dot-4"></span>
-            </div>
-            
-            <!-- Floating Elements -->
-            <div class="how-float-element how-float-1 float-element" data-float-speed="medium"></div>
-            <div class="how-float-element how-float-2 float-element" data-float-speed="slow"></div>
-        </div>
-        
         <!-- World Routes Background -->
         <div class="bg-world-routes"></div>
         <!-- Decorative Elements -->
