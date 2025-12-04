@@ -12,6 +12,56 @@
     <link rel="stylesheet" href="assets/css/location-page.css">
 </head>
 <body>
+    <!-- ================= GLOBAL PARALLAX BACKGROUND LAYERS ================= -->
+    <div class="parallax-bg-container" aria-hidden="true">
+        <!-- Layer 1: Soft Blob SVGs (speed: 0.15) -->
+        <div class="parallax-layer parallax-layer-blobs" data-parallax-speed="0.15">
+            <svg class="parallax-blob blob-1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="rgba(0,119,200,0.12)">
+                    <animate attributeName="d" dur="25s" repeatCount="indefinite"
+                        values="M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,341Q39,275,39.5,197.5Q40,120,107,77.5Q174,35,251,35Q328,35,384.5,83Q441,131,460,205.5Q479,280,440.5,320.5Z;
+                                M453.78,319.98Q416.56,389.96,346.78,442.48Q277,495,205.5,445.48Q134,395.96,97.78,324.98Q61.56,254,75.28,173Q89,92,165.5,53.48Q242,15,319.5,48.98Q397,82.96,439.78,156.48Q482.56,230,453.78,319.98Z;
+                                M411.39,322.87Q421.74,395.74,352.87,437.87Q284,480,215.13,437.87Q146.26,395.74,98.13,324.87Q50,254,98.13,183.13Q146.26,112.26,215.13,70.13Q284,28,352.87,70.13Q421.74,112.26,411.39,183.13Q401.04,254,411.39,322.87Z;
+                                M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,341Q39,275,39.5,197.5Q40,120,107,77.5Q174,35,251,35Q328,35,384.5,83Q441,131,460,205.5Q479,280,440.5,320.5Z"/>
+                </path>
+            </svg>
+            <svg class="parallax-blob blob-2" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="rgba(0,155,124,0.10)">
+                    <animate attributeName="d" dur="30s" repeatCount="indefinite"
+                        values="M432.5,294.5Q389,339,361.5,392Q334,445,267,445Q200,445,147.5,407.5Q95,370,66,302.5Q37,235,75,176Q113,117,166,74Q219,31,284,52Q349,73,397.5,114Q446,155,467,202.5Q488,250,432.5,294.5Z;
+                                M398.5,286.5Q373,323,350.5,367.5Q328,412,270.5,430.5Q213,449,165.5,410.5Q118,372,77.5,319Q37,266,62,206.5Q87,147,137,109Q187,71,252.5,52Q318,33,369.5,79.5Q421,126,427.5,188Q434,250,398.5,286.5Z;
+                                M432.5,294.5Q389,339,361.5,392Q334,445,267,445Q200,445,147.5,407.5Q95,370,66,302.5Q37,235,75,176Q113,117,166,74Q219,31,284,52Q349,73,397.5,114Q446,155,467,202.5Q488,250,432.5,294.5Z"/>
+                </path>
+            </svg>
+            <svg class="parallax-blob blob-3" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path fill="rgba(77,199,227,0.08)">
+                    <animate attributeName="d" dur="22s" repeatCount="indefinite"
+                        values="M424.5,296.5Q393,343,360.5,389Q328,435,263,449Q198,463,149.5,418Q101,373,59.5,311Q18,249,59,186.5Q100,124,157.5,93.5Q215,63,279.5,55.5Q344,48,389,97.5Q434,147,449.5,198.5Q465,250,424.5,296.5Z;
+                                M411.5,307.5Q405,365,353.5,395Q302,425,246,433Q190,441,139.5,404.5Q89,368,64,306.5Q39,245,68.5,188Q98,131,150,89.5Q202,48,267,48.5Q332,49,380.5,92Q429,135,424,192.5Q419,250,411.5,307.5Z;
+                                M424.5,296.5Q393,343,360.5,389Q328,435,263,449Q198,463,149.5,418Q101,373,59.5,311Q18,249,59,186.5Q100,124,157.5,93.5Q215,63,279.5,55.5Q344,48,389,97.5Q434,147,449.5,198.5Q465,250,424.5,296.5Z"/>
+                </path>
+            </svg>
+        </div>
+        <!-- Layer 2: Dotted/Grid Pattern (speed: -0.1, moves opposite) -->
+        <div class="parallax-layer parallax-layer-grid" data-parallax-speed="-0.1">
+            <div class="grid-pattern grid-pattern-1"></div>
+            <div class="grid-pattern grid-pattern-2"></div>
+            <div class="dot-pattern dot-pattern-1"></div>
+            <div class="dot-pattern dot-pattern-2"></div>
+        </div>
+        <!-- Layer 3: Abstract Decorative Shapes (speed: 0.1) -->
+        <div class="parallax-layer parallax-layer-shapes" data-parallax-speed="0.1">
+            <div class="abstract-shape shape-circle shape-1"></div>
+            <div class="abstract-shape shape-circle shape-2"></div>
+            <div class="abstract-shape shape-ring shape-3"></div>
+            <div class="abstract-shape shape-ring shape-4"></div>
+            <div class="abstract-shape shape-square shape-5"></div>
+            <div class="abstract-shape shape-line shape-6"></div>
+            <div class="abstract-shape shape-line shape-7"></div>
+            <div class="abstract-shape shape-cross shape-8"></div>
+            <div class="abstract-shape shape-cross shape-9"></div>
+        </div>
+    </div>
 
     <!-- ================= TOP INFO BAR ================= -->
     <div class="top-info-bar">
