@@ -107,13 +107,24 @@
 
 /* ============= DECORATIVE BACKGROUND STICKERS ============= */
 
-/* Base decoration container */
+/* Base decoration container - stays behind main content */
 .section-decorations {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
     z-index: 0;
+}
+
+/* World routes background - ensure it's behind everything */
+.bg-world-routes {
+    z-index: 0 !important;
+}
+
+/* Ensure container content is above decorations */
+.section .container {
+    position: relative;
+    z-index: 2;
 }
 
 /* Circle decorations */
@@ -1127,12 +1138,32 @@ img {
     position: relative;
     height: 650px;
     margin-top: 118px; /* top info bar (38px) + header (80px) */
-    overflow: hidden;
+    overflow: visible;
 }
 
-/* Hero bottom edge - no curve */
+/* Hero curved bottom corners - left and right */
+.hero::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 50%;
+    height: 80px;
+    background: var(--white);
+    border-radius: 0 100px 0 0;
+    z-index: 6;
+}
+
 .hero::after {
-    display: none;
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    width: 50%;
+    height: 80px;
+    background: var(--white);
+    border-radius: 100px 0 0 0;
+    z-index: 6;
 }
 
 /* Hero Slider Container */
